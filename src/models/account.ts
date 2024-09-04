@@ -1,6 +1,6 @@
-import { AccountTypes, InvestmentTypes } from './enums/accountTypes';
-import Transaction from './transaction';
-import sum from 'lodash/sum';
+import sum from "lodash/sum";
+import { AccountTypes, InvestmentTypes } from "./enums/accountTypes";
+import Transaction from "./transaction";
 
 export default class Account {
     private owner: string;
@@ -67,7 +67,7 @@ export default class Account {
                 this.transactions.map((transaction: Transaction): number =>
                     transaction.getAmount()
                 )
-            ) == this.balance
+            ) === this.balance
         );
     }
 }

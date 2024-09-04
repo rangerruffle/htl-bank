@@ -1,15 +1,15 @@
-import Transaction from '../models/transaction';
-import Account from '../models/account';
-import Bank from '../models/bank';
-import { TransactionTypes } from '../models/enums/transactionTypes';
+import Account from "../models/account";
+import Bank from "../models/bank";
+import { TransactionTypes } from "../models/enums/transactionTypes";
+import Transaction from "../models/transaction";
 
-export function deposit(
+export const deposit = (
     depositAmount: number,
     description: string,
     account: Account
-): number {
+): number => {
     if (depositAmount <= 0) {
-        throw new Error('Deposit value must be positive');
+        throw new Error("Deposit value must be positive");
     }
 
     account.setBalance(account.getBalance() + depositAmount);
@@ -19,20 +19,20 @@ export function deposit(
     );
 
     return account.getBalance();
-}
+};
 
-export function withdrawal(
+export const withdrawal = (
     withdrawalAmount: number,
     description: string,
     account: Account,
     bank: Bank
-): number {
+): number => {
     if (withdrawalAmount <= 0) {
-        throw new Error('Withdrawal value must be positive');
+        throw new Error("Withdrawal value must be positive");
     }
 
     if (withdrawalAmount > account.getBalance()) {
-        throw new Error('Account does not have enough money for withdrawal');
+        throw new Error("Account does not have enough money for withdrawal");
     }
 
     const withdrawalLimit = bank.getWithdrawalLimitByAccountType(
@@ -43,7 +43,7 @@ export function withdrawal(
         withdrawalLimit &&
         withdrawalAmount + account.getWithdrawalForDay() > withdrawalLimit
     ) {
-        throw new Error('Account has reached its limit for daily withdrawals');
+        throw new Error("Account has reached its limit for daily withdrawals");
     }
 
     account.setBalance(account.getBalance() - withdrawalAmount);
@@ -63,15 +63,16 @@ export function withdrawal(
     );
 
     return account.getBalance();
-}
+};
 
-export function transfer(
+export const transfer = (
     transferAmount: number,
     accountFrom: Account,
     bankFrom: Bank,
     accountTo: Account
-): boolean {
-    // TODO: Ask product owners if transfers count as withdrawals. Should daily withdrawal limits affect this transaction?
+): boolean => {
+    // TODO: Ask product owners if transfers count as withdrawals
+    // Should daily withdrawal limits affect this transaction?
     withdrawal(
         transferAmount,
         `Transfer to ${accountTo.getOwner()}`,
@@ -86,4 +87,4 @@ export function transfer(
     );
 
     return true;
-}
+};

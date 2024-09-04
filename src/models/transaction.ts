@@ -1,4 +1,4 @@
-import { TransactionTypes } from './enums/transactionTypes';
+import { TransactionTypes } from "./enums/transactionTypes";
 
 export default class Transaction {
     private transactionType: TransactionTypes;
@@ -20,7 +20,7 @@ export default class Transaction {
     }
 
     public getAmount(): number {
-        return this.transactionType == TransactionTypes.Deposit
+        return this.transactionType === TransactionTypes.Deposit
             ? this.amount
             : -1 * this.amount;
     }

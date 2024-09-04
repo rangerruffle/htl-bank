@@ -1,5 +1,5 @@
-import Account from './account';
-import { InvestmentTypes } from './enums/accountTypes';
+import Account from "./account";
+import { InvestmentTypes } from "./enums/accountTypes";
 
 export default class Bank {
     private name: string;
@@ -35,6 +35,6 @@ export default class Bank {
     }
 
     public getAccountByOwner(owner: string): Account {
-        return this.accounts.find((account) => account.getOwner() == owner);
+        return this.accounts.find((account) => account.getOwner() === owner);
     }
 }
