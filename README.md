@@ -15,7 +15,7 @@ Requirements Addressed
 * Accounts can be of type: Checking or Investment
 * Investment accounts can be of type: Individual or Corporate
 * Individual accounts have a withdrawal limit of 500 dollars
-..* Banks can have their own withdrawal limit for each investment account type
+--* Banks can have their own withdrawal limit for each investment account type
 * Transactions are made on accounts
 * Transactions can be of type: Deposit, Withdraw, or Transfer
 * Transactions are kept track of
